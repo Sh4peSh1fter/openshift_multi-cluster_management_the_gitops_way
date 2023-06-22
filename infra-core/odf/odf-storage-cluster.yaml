@@ -1,0 +1,80 @@
+apiVersion: ocs.openshift.io/v1
+kind: StorageCluster
+metadata:
+  annotations:
+    cluster.ocs.openshift.io/local-devices: "true"
+    uninstall.ocs.openshift.io/cleanup-policy: delete
+    uninstall.ocs.openshift.io/mode: graceful
+  finalizers:
+  - storagecluster.ocs.openshift.io
+  name: ocs-storagecluster
+  namespace: openshift-storage
+spec:
+  placement:
+    all:
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+    mds:
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+    noobaa-core:
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+    rgw:
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: "reserved"
+  arbiter: {}
+  encryption:
+    kms: {}
+  externalStorage: {}
+  flexibleScaling: true
+  managedResources:
+    cephBlockPools: {}
+    cephCluster: {}
+    cephConfig: {}
+    cephDashboard: {}
+    cephFilesystems: {}
+    cephObjectStoreUsers: {}
+    cephObjectStores: {}
+  mirroring: {}
+  monDataDirHostPath: /var/lib/rook
+  nodeTopologies: {}
+  storageDeviceSets:
+  - config: {}
+    count: 3
+    dataPVCTemplate:
+      metadata: {}
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: "1"
+        storageClassName: odf
+        volumeMode: Block
+      status: {}
+    name: ocs-deviceset-odf
+    preparePlacement: {}
+    replica: 1
+    resources: {}
+  version: 4.10.0

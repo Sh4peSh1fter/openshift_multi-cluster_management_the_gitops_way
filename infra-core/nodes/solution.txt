@@ -1,0 +1,56 @@
+## Label nodes as infra ##
+for node in `oc get nodes | grep inf | awk '{ print $1 }'`; do oc label node $node node-role.kubernetes.io/infra=; done
+for node in `oc get nodes | grep inf | awk '{ print $1 }'`; do oc label node $node node-role.kubernetes.io=infra; done
+
+## Deploy ODF ##
+## Without Storage taint ##
+## Ensure that ODF is up and running and the Ceph cluster is Health ##
+## Check ODF health ##
+oc rsh -n openshift-storage $(oc get pods -n openshift-storage -o name -l app=rook-ceph-operator) ceph -s -c /var/lib/rook/openshift-storage/openshift-storage.config
+oc rsh -n openshift-storage $(oc get pods -n openshift-storage -o name -l app=rook-ceph-operator) ceph osd tree -c /var/lib/rook/openshift-storage/openshift-storage.config
+
+!!!! Note the storgecluster must consists its own unique name
+
+## Edit the storagecluster to add toleration for Nooba, MDS and RGW components ##
+oc apply -f ../odf/storageclusters.ocs.openshift.io.yaml
+
+
+## Adding affinity and toleration for the csi provisioner pods by edit the cm ##
+oc apply -f ../odf/rook-ceph-operator-config.yaml
+
+## Modifing ODF subscriptions to tolerate infra taints ##
+
+oc apply -f ../odf/mcg-operator-sub.yaml
+oc apply -f ../odf/ocs-operator-sub.yaml
+oc apply -f ../odf/odf-csi-addons-sub.yaml
+oc apply -f ../odf/odf-operator-sub.yaml
+
+## In case that ODF pods are in Pending state - remove the taints from the infra nodes and add them back affter the pods are running ##
+## This is related to a bug in ODF 4.10 adding taints to a running cluster, you'll first want to add the tolerations ##
+## and make sure rook pods are updated with those tolerations before you add the taints. ##
+## Otherwise, the pods will not be able to start and the operator won't be able to reconcile while the mons are stuck pending and out of quorum."##
+## https://bugzilla.redhat.com/show_bug.cgi?id=2121842 ##
+
+
+## Moving the router to infra nodes ##
+oc patch ingresscontroller/default -n  openshift-ingress-operator  --type=merge -p '{"spec":{"nodePlacement": {"nodeSelector": {"matchLabels": {"node-role.kubernetes.io/infra": ""}},"tolerations": [{"effect":"NoSchedule","key": "node-role.kubernetes.io/infra","value": "reserved"},{"effect":"NoExecute","key": "node-role.kubernetes.io/infra","value": "reserved"}]}}}'
+
+## Run 3 router replicas ##
+oc patch ingresscontroller/default -n openshift-ingress-operator --type=merge -p '{"spec":{"replicas": 3}}'
+
+
+## Moving Prometheus, Grafana and AlertManager to infra nodes ##
+oc apply -f ../monitoring/cluster-monitoring-configmap.yaml
+
+## Moving the logging stack to infra nodes by using nodeSelector snf tolrerations for infra in es and kinana ##
+oc apply -f ../cluster-logging/cluster-logging-cr.yaml
+
+## Allow ES cronjobs to tolerate infra nodes ##
+oc apply -f ../cluster-logging/cj-im-app.yaml
+oc apply -f ../cluster-logging/cj-im-audit.yaml
+oc apply -f ../cluster-logging/cj-im-infra.yaml
+
+## Make sure the cluster logging is up and running ##
+
+## If you need remove the taint use the following ##
+oc adm taint nodes -l node-role.kubernetes.io/infra node-role.kubernetes.io/infra=reserved:NoSchedule- node-role.kubernetes.io/infra=reserved:NoExecute- --overwrite

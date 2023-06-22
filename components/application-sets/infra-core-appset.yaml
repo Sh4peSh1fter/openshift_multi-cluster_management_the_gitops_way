@@ -1,0 +1,63 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: infra-core-application-set
+  namespace: openshift-gitops
+spec:
+  generators:
+  - git:
+      repoURL: https://azure-devops/tfs/Maccabi/OCP-Cluster-Mgm/_git/OCP-Cluster-Mgm
+      revision: HEAD
+      directories:
+      - path: infra-core/overlays/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 15
+          backoff:
+            duration: 15s
+            factor: 2
+            maxDuration: 5m
+      source:
+        repoURL: https://azure-devops/tfs/Maccabi/OCP-Cluster-Mgm/_git/OCP-Cluster-Mgm
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+
+
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: infra-core-application-set
+# spec:
+#   generators:
+#   - list:
+#       elements: 
+#       - cluster: test
+#         url: https://api.ocplantest.mac.org.il:6443
+#       - cluster: dev
+#         url: https://api.ocplandev.mac.org.il:6443
+#       # - cluster: qa
+#       #   url: https://9.8.7.6
+#       # - cluster: prod
+#       #   url: https://9.8.7.6
+#   template: 
+#     metadata:
+#       name: '{{cluster}}-appset'
+#     spec:
+#       project: default
+#       source:
+#         repoURL: https://azure-devops/tfs/Maccabi/OCP-Cluster-Mgm/_git/OCP-Cluster-Mgm
+#         targetRevision: HEAD
+#         path: infra-core/overlays/{{cluster}}
+#       destination:
+#         server: '{{url}}'
+#         namespace: argo-application-sets #?

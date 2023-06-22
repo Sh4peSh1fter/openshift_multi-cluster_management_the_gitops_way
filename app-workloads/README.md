@@ -1,0 +1,1 @@
+you can deploy example applications that help demonstrate the capabilites of argocd. take a look at this: https://github.com/argoproj/argocd-example-apps.

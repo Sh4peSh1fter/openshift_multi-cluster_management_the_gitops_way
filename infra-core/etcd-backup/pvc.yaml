@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    volume.beta.kubernetes.io/storage-provisioner: csi.vsphere.vmware.com
+    volume.kubernetes.io/selected-node: ocp-t-wrkr02.ocplantest.mac.org.il
+    volume.kubernetes.io/storage-provisioner: csi.vsphere.vmware.com
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    app.kubernetes.io/component: postgres
+    app.kubernetes.io/instance: codeready
+    app.kubernetes.io/managed-by: codeready-operator
+    app.kubernetes.io/name: codeready
+    app.kubernetes.io/part-of: che.eclipse.org
+  name: postgres-data
+  namespace: openshift-workspaces
+  ownerReferences:
+  - apiVersion: org.eclipse.che/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: CheCluster
+    name: codeready-workspaces
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: thin-csi
+  volumeMode: Filesystem

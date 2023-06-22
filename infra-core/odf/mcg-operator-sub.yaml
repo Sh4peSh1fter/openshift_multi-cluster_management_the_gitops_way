@@ -1,0 +1,22 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  # annotations:
+  labels:
+    operators.coreos.com/mcg-operator.openshift-storage: ""
+  name: mcg-operator  # mcg-operator-stable-4.10-redhat-operators-openshift-marketplace
+  namespace: openshift-storage
+spec:
+  channel: stable-4.10
+  installPlanApproval: Automatic
+  name: mcg-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  config:
+    tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/infra
+      value: "reserved"
+    - effect: NoExecute
+      key: node-role.kubernetes.io/infra
+      value: "reserved"

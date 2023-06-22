@@ -1,0 +1,8 @@
+apiVersion: kuatomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- openshift-gitops-sub.yaml
+- openshift-gitops-argo-app-workloads.yaml
+- openshift-gitops-argo-infra-core.yaml
+- openshift-rbac-policy.yaml

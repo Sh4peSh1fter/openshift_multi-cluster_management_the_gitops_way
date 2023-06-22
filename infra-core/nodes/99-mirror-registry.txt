@@ -1,0 +1,326 @@
+
+==> node/ocp-t-inf01.ocplantest.mac.org.il
+
+==> node/ocp-t-inf02.ocplantest.mac.org.il
+
+==> node/ocp-t-inf03.ocplantest.mac.org.il
+
+==> node/ocp-t-mstr01.ocplantest.mac.org.il
+unqualified-search-registries = ["docker.io"]
+short-name-mode = ""
+
+[[registry]]
+  prefix = ""
+  location = "quay.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-release"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "registry.connect.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.redhat.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.access.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+==> node/ocp-t-mstr02.ocplantest.mac.org.il
+unqualified-search-registries = ["docker.io"]
+short-name-mode = ""
+
+[[registry]]
+  prefix = ""
+  location = "quay.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-release"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "registry.connect.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.redhat.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.access.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+==> node/ocp-t-mstr03.ocplantest.mac.org.il
+unqualified-search-registries = ["docker.io"]
+short-name-mode = ""
+
+[[registry]]
+  prefix = ""
+  location = "quay.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-release"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "registry.connect.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.redhat.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.access.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+==> node/ocp-t-wrkr01.ocplantest.mac.org.il
+unqualified-search-registries = ["docker.io"]
+short-name-mode = ""
+
+[[registry]]
+  prefix = ""
+  location = "quay.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-release"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "registry.connect.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.redhat.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.access.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+==> node/ocp-t-wrkr02.ocplantest.mac.org.il
+unqualified-search-registries = ["docker.io"]
+short-name-mode = ""
+
+[[registry]]
+  prefix = ""
+  location = "quay.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-release"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "registry.connect.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.redhat.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.access.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+==> node/ocp-t-wrkr03.ocplantest.mac.org.il
+unqualified-search-registries = ["docker.io"]
+short-name-mode = ""
+
+[[registry]]
+  prefix = ""
+  location = "quay.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-release"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int/openshift"
+
+[[registry]]
+  prefix = ""
+  location = "registry.connect.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.redhat.io"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
+
+[[registry]]
+  prefix = ""
+  location = "registry.access.redhat.com"
+  mirror-by-digest-only = false
+
+  [[registry.mirror]]
+    location = "docker.jfrog-art-int"
