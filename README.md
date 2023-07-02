@@ -3,9 +3,12 @@ ocp management using the gitops method. we will manage our openshift clusters wi
 in this repo we want to define our cluster management, governance, policy management, cluster configuration and applications deployment.
 
 ## keywords
-keywords can help people find this repo, describeit from different angles, and can be used to search and find related sources we can learn from.
+keywords can help people find this repo, describe it from different angles, and can be used to search and find related sources we can learn from.
 
-openshift gitops, ocp gitops, openshift one touch provisioning, ocp gitops
+tools: openshift, ocp, argocd
+actions: management, deployment
+terms (/ methods): gitops, one touch provisioning
+other: governance
 
 ## how does it work?
 the logical steps look like this:
@@ -121,6 +124,11 @@ the "app-workloads" folder contains the application manifests, that will run on 
     * https://cloud.redhat.com/blog/configuring-openshift-cluster-with-applicationsets-using-helmkustomize-and-acm-policies
 10. gitops-fleet-samples
     * https://github.com/jnpacker/gitops-fleet-samples
+11. Red Hat Advanced Cluster Management with OpenShift GitOps
+    * https://cloud.redhat.com/blog/red-hat-advanced-cluster-management-with-openshift-gitops
+12. A Guide to Going From Zero to OpenShift Cluster with GitOps
+    * https://cloud.redhat.com/blog/a-guide-to-going-from-zero-to-openshift-cluster-with-gitops
+
 
 
 # todo
@@ -130,4 +138,9 @@ the "app-workloads" folder contains the application manifests, that will run on 
 4. to get around the errors thrown at the "apply bootstrap" for the first time running, doesn't argocd's sync waves method solve them? giving a correct order of sync.
 5. find a way to minimize the "dilemas" throughout this readme. tried to use dropdowns but it doesn't digest markdown inside of it. maybe point to seperate readme for each.
 6. maybe there is no need for the "use cases" section.
-7.we can give a cluster as a service with acm resources (cluster claim, cluster deployment and install config secrets (and maybe more stuff))
+7. we can give a cluster as a service with acm resources (cluster claim, cluster deployment and install config secrets (and maybe more stuff))
+8. https://akuity.io/blog/how-to-create-a-theme-for-your-argocd-with-minimal-css/
+9. https://akuity.io/blog/argo-cd-kube-green/
+10. https://akuity.io/blog/argo-cd-kyverno-best-practice-policies/
+11. take inspiration from https://github.com/michaelkotelnikov/argocdaas
+

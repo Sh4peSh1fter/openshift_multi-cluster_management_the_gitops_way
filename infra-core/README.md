@@ -1,4 +1,5 @@
 # infra-core
+## cluster administration
 ### cluster management
 1. acm - subscription, namespace, operator group, multi cluster hub
 ### resource management
@@ -35,6 +36,17 @@
 1. odf - subscription, namespace, operator group, lvm cluster
 ### image registry
 1. image-registry - https://www.youtube.com/watch?v=7i7RYoHZ5Ig - image registry config, pvc
+
+
+## cluster observation
+
+
+
+## cluster testing
+### file integrity monitor
+https://sysdig.com/blog/file-integrity-monitoring/
+1. file integrity operator
+
 
 
 # other operators that would be nice to know
