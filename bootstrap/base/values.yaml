@@ -1,0 +1,39 @@
+# Default values for argocd-bootstrap.
+# This is a YAML-formatted file.
+
+nameOverride: "argocd"
+fullnameOverride: "argocd-chart"
+
+clusters:
+  - name: acm
+    server: https://ocp-acm.com
+    creds: 
+      token: ""
+  - name: test
+    server: https://ocp-test.com
+    creds: 
+      token: ""
+  - name: dev
+    server: https://ocp-dev.com
+    creds: 
+      token: ""
+  - name: qa
+    server: https://ocp-qa.com
+    creds: 
+      token: ""
+  - name: prod
+    server: https://ocp-prod.com
+    creds: 
+      token: ""
+
+repositories:
+  ocp-mgmt: 
+    name: ocp-mgmt
+    url: https://azure-devops
+    type: git
+
+projects:
+  cluster-configs:
+    description: an argo project that is dedicated for cluster-configs configurations.
+  admin-apps:
+    description: a

@@ -1,0 +1,24 @@
+{{- range $project_key, $project_value := .Values.projects }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $project_key }}-project
+  namespace: openshift-gitops
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: {{ .description }} # an argo project that is dedicated for infra-core configurations.  
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - '*'
+  # Allow applications to deploy in all namespaces
+  destinations:
+  - namespace: '*'
+    server: '*'
+  # Allow all cluster-scoped resources to be created
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+{{- end }}

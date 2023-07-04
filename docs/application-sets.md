@@ -16,3 +16,4 @@ what sync options should i define on the application sets.
 
 # todo
 1. should i add a "namespace" field in the kustomization yaml?
+2. should i crete a helm chart from this directory so i can insert values for the application sets yaml, such as the repo url?

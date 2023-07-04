@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
-  name: openshift-gitops-app-workloads
+  name: openshift-gitops-admin-apps
   namespace: openshift-gitops
 spec:
   applicationSet:

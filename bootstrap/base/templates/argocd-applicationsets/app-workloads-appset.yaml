@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: admin-apps-application-set
+  namespace: openshift-gitops
+spec:
+  generators:
+  - git:
+      repoURL: https://azure-devops/tfs/Maccabi/OCP-Cluster-Mgm/_git/OCP-Cluster-Mgm
+      revision: HEAD
+      directories:
+      - path: admin-apps/*
+  template:
+    metadata:
+      name: '{{`{{path.basename}}`}}'
+    spec:
+      project: admin-apps-project
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 15
+          backoff:
+            duration: 15s
+            factor: 2
+            maxDuration: 5m
+      source:
+        repoURL: https://azure-devops/tfs/Maccabi/OCP-Cluster-Mgm/_git/OCP-Cluster-Mgm
+        targetRevision: HEAD
+        path: '{{`{{path}}`}}'
+      destination:
+        server: '{{`{{server}}`}}'
+        namespace: '{{`{{path.basename}}`}}'

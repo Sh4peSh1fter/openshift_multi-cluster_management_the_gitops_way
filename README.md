@@ -7,23 +7,23 @@ keywords can help people find this repo, describe it from different angles, and 
 
 tools: openshift, ocp, argocd
 actions: management, deployment
-terms (/ methods): gitops, one touch provisioning
+terms (/ methods): gitops, one touch provisioning, declerative
 other: governance
 
 ## how does it work?
 the logical steps look like this:
 1. create gitops operator
 2. apply its configuration on itself
-3. create application sets for the infra-core configuration manifests
-4. apply infra-core configuration manifests on the clusters
+3. create application sets for the cluster-configssss configuration manifests
+4. apply cluster-configss configuration manifests on the clusters
 
 to do so, we:
 1. "kubectl apply" the bootstrap default overlay, which applys the openshift gitops operator.
 2. then it applys the gitops operator components, such as application sets (in argocd).
-3. the application sets applys the infra-core configuration manifests on the clusters.
+3. the application sets applys the cluster-configss configuration manifests on the clusters.
 
 ## use cases
-if you already have a gitops operator / argocd running and managing everything, maybe you need only the "infra-core".
+if you already have a gitops operator / argocd running and managing everything, maybe you need only the "cluster-configss".
 
 ## getting started
 so overall, we only need to manualy prompt the first apply - applying the gitops operator which manages it all.
@@ -35,7 +35,7 @@ until kubectl apply -k https://<git-server-url>/<path-to-bootstrap-overlay>; do 
 replace the \<git-server-url> with the url of the server where the repo is stored, and \<path-to-bootstrap-overlay> with to full path to your bootstrap overlay that you apply from.
 for example, in my case it will look like this:
 ```
-until kubectl apply -k https://github.com/sean_sosis/ocp-management/bootstrap/overlays/acm; do sleep 3; done
+until kubectl apply -k https://github.com/XXX/ocp-management/bootstrap/overlays/cluster-configss; do sleep 3; done
 ```
 
 check the results by running in your cluster:
@@ -48,6 +48,11 @@ take a look at the argocd ui under its route:
 ```
 oc get route openshift-gitops-server -n openshift-gitops --template='https://{{.spec.host}}'
 ```
+
+## term map
+1. hub cluster - 
+2. spoke cluster - 
+
 
 ## folder structure
 ```
@@ -67,17 +72,17 @@ ocp-management/
 │   └── argocd-projects
 │       ├── kustomization.yaml (points to current files)
 │       └── # argocd projects
-├── infra-core
+├── cluster-configs
 │   ├── gitops-controller
 │   │   └── kustomization.yaml (points to bootstrap->overlays->acm)
-│   └── # other infra-core configuration manifests for the cluster, such as "resource reservation", "storage management", "proxy configuration", and so on
-└── app-workloads
+│   └── # other cluster-configs configuration manifests for the cluster, such as "resource reservation", "storage management", "proxy configuration", and so on
+└── admin-apps
     └── # application workloads that will run on the cluster
 ```
 
 ### bootstrap
 the "bootstrap" folder contains all the minimal manifests needed for the gitops operator.
-the idea is that it will be one point of start, after which the openshift gitops operator will deploy all the other manifests of the infra-core configuration.
+the idea is that it will be one point of start, after which the openshift gitops operator will deploy all the other manifests of the cluster-configs configuration.
 
 * base - where the common yamls stored.
 * overlays - configuration for specific clusters.
@@ -86,19 +91,19 @@ the idea is that it will be one point of start, after which the openshift gitops
 ### components
 the "components" folder contains additional components of the gitops operator - argocd specific configuration, such as appliocation sets, argocd projects, etc.
 
-* application-sets - yamls that generate application set from each manifest folder under the infra-core or the app-workloads folders.
+* application-sets - yamls that generate application set from each manifest folder under the cluster-configs or the admin-apps folders.
 * argocd-projects - argocd project that will be created in the argocd.
 > note: why is this folder a standalone from the "bootstrap" folder? why all the stuff related to the gitops operator are not under one folder? not sure for now.
 
 
-### infra-core
-the "infra-core" folder contains the cluster configuration manifests, that will be applied on our clusters.
+### cluster-configs
+the "cluster-configs" folder contains the cluster configuration manifests, that will be applied on our clusters.
 
 * gitops-controller - contains the kustomization file that points into the overlay with which we bootstraped our gitops operator. thus the argocd manages itself.
 
 
-### app-workloads
-the "app-workloads" folder contains the application manifests, that will run on our clusters.
+### admin-apps
+the "admin-apps" folder contains the application manifests, that will run on our clusters.
 
 
 # sources
@@ -134,7 +139,7 @@ the "app-workloads" folder contains the application manifests, that will run on 
 # todo
 1. maybe change the term "application set" into "aas" for "argo application set". because the application set's yaml file's name is kinda long.
 2. same idea, "argo project" -> "ap".
-3. "infra-core" -> "cluster-config" or "cluster-conf".
+3. "infra-core" -> "cluster-configs" or "cluster-conf".
 4. to get around the errors thrown at the "apply bootstrap" for the first time running, doesn't argocd's sync waves method solve them? giving a correct order of sync.
 5. find a way to minimize the "dilemas" throughout this readme. tried to use dropdowns but it doesn't digest markdown inside of it. maybe point to seperate readme for each.
 6. maybe there is no need for the "use cases" section.
@@ -143,4 +148,5 @@ the "app-workloads" folder contains the application manifests, that will run on 
 9. https://akuity.io/blog/argo-cd-kube-green/
 10. https://akuity.io/blog/argo-cd-kyverno-best-practice-policies/
 11. take inspiration from https://github.com/michaelkotelnikov/argocdaas
+12. "app-workloads" -> "admin-apps" or "cluster-apps"
 

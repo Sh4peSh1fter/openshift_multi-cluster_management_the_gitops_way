@@ -1,6 +1,6 @@
-# the cluster-configs folder structure dilema
+# the cluster-configss folder structure dilema
 ## questions
-1. what is the best folder structure for the cluster-configs?
+1. what is the best folder structure for the cluster-configss?
 
 ## sample background
 we have 2 environments (cluster per env).
@@ -11,14 +11,14 @@ there are 2 main ways to structure this folder:
 1. env per config - folder for each configuration, and under each configuration will be layers (for each environment).
 ```
 ...
-├── infra-core
+├── cluster-configs
 │   ├── node-config
 │   │   ├── base
 │   │   │   ├── kustomization.yaml (points to current files)
 │   │   │   └── file1.yaml, file2.yaml, ...
 │   │   └── overlays
 │   │       ├── acm
-│   │       │   ├── kustomization.yaml (points to infra-core->node-configuration->base)
+│   │       │   ├── kustomization.yaml (points to cluster-configs->node-configuration->base)
 │   │       │   └── patched-file1.yaml
 │   │       ├── test
 │   │       ├── dev
@@ -31,7 +31,7 @@ there are 2 main ways to structure this folder:
 2. conf per env - folder for each environment, and under each environment will be all the configuration folders for that environment.
 ```
 ...
-├── infra-core
+├── cluster-configs
 │   ├── base
 │   │   ├── node-confg
 │   │   │   ├── kustomization.yaml (points to current files)
@@ -41,7 +41,7 @@ there are 2 main ways to structure this folder:
 │   ├── overlays
 │   │   ├── acm
 │   │   │   ├── node-config
-│   │   │   │   ├── kustomization.yaml (points to infra-core->base->node-configuration)
+│   │   │   │   ├── kustomization.yaml (points to cluster-configs->base->node-configuration)
 │   │   │   │   └── patched-file1.yaml
 │   │   │   ├── storage-config
 │   │   │   └── network-config
