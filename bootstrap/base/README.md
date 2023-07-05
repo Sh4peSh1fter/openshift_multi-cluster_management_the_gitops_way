@@ -1,5 +1,4 @@
-
-
+# argocd-bootstrap chart
 
 * argocd-application-controller
     - k8s controller that continuously monitors running applications and compared the current live state against the desired target state.

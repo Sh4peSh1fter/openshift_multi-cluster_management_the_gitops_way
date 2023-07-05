@@ -9,7 +9,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: {{ .description }} # an argo project that is dedicated for infra-core configurations.  
+  description: {{ .description }}  
   # Allow manifests to deploy from any Git repos
   sourceRepos:
   - '*'

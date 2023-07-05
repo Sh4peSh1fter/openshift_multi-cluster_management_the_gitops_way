@@ -31,6 +31,14 @@ repositories:
     name: ocp-mgmt
     url: https://azure-devops
     type: git
+    username: admin
+    password: admin
+  devops: 
+    name: devops
+    url: https://azure-devops
+    type: git
+    username: admin
+    password: admin
 
 projects:
   cluster-configs:
