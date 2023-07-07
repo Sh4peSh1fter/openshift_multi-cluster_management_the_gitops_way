@@ -8,13 +8,14 @@ spec:
   - matrix:
       generators:
         - git:
-            repoURL: https://azure-devops/tfs/Maccabi/OCP-Cluster-Mgm/_git/OCP-Cluster-Mgm
+            repoURL: {{ .Values.repositories.ocp-mgmt.url }}
             revision: HEAD
             directories:
             - path: cluster-configs/*
         - clusters:
             selector:
-              argocd.argoproj.io/secret-type: cluster
+              matchLabels:
+                argocd.argoproj.io/secret-type: cluster
   template:
     metadata:
       name: '{{`{{path.basename}}`}}-{{`{{name}}`}}'
@@ -31,7 +32,7 @@ spec:
             factor: 2
             maxDuration: 5m
       source:
-        repoURL: https://azure-devops/tfs/Maccabi/OCP-Cluster-Mgm/_git/OCP-Cluster-Mgm
+        repoURL: {{ .Values.repositories.ocp-mgmt.url }}
         targetRevision: HEAD
         path: '{{`{{path}}`}}'
       destination:

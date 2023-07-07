@@ -28,7 +28,7 @@ clusters:
 
 repositories:
   ocp-mgmt: 
-    name: ocp-mgmt
+    name: ocp-management
     url: https://azure-devops
     type: git
     username: admin

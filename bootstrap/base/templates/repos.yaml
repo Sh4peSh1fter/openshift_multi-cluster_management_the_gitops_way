@@ -11,8 +11,8 @@ metadata:
     {{- range $key, $value := . }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}
-stringData: # data
+stringData:
   {{- range $key, $value := $repo_value }}
-  {{ $key }}: {{ $value | b64enc }} # is there a need for b64enc?
+  {{ $key }}: {{ $value }} 
   {{- end }}
 {{- end }}

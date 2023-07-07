@@ -1,6 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-helm:
-- name: argocd-bootstrap
-  path: .
+# helmChartInflationGenerator:
+# - chartName: nginx
+#   chartRepoUrl: https://charts.bitnami.com/bitnami
+#   chartVersion: 9.5.4
+#   releaseName: my-nginx-release
+#   releaseNamespace: nginx-chart
+
+namespace: openshift-gitops
+helmGlobals:
+  chartHome: .
+helmCharts:
+- name: argocd
+  releaseName: argocd
