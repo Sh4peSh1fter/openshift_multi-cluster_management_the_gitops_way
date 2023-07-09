@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: admin-apps-application-set
-  namespace: openshift-gitops
+  namespace: {{ .Values.namespace }}
 spec:
   generators:
   - git:

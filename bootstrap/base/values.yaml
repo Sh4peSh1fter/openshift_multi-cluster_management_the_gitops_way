@@ -4,6 +4,8 @@
 nameOverride: "argocd"
 fullnameOverride: "argocd-chart"
 
+namespace: openshift-gitops-cluster-config
+
 clusters:
   - name: acm
     server: https://ocp-acm.com

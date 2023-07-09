@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
   name: openshift-gitops-cluster-configs
-  namespace: openshift-gitops
+  namespace: {{ .Values.namespace }}
 spec:
   applicationSet:
     resources:
