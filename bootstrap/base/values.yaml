@@ -4,7 +4,7 @@
 nameOverride: "argocd"
 fullnameOverride: "argocd-chart"
 
-namespace: gitops-cluster-configs
+namespace: gitops-cluster-config
 
 clusters:
   - name: acm
