@@ -149,4 +149,5 @@ the "admin-apps" folder contains the application manifests, that will run on our
 10. https://akuity.io/blog/argo-cd-kyverno-best-practice-policies/
 11. take inspiration from https://github.com/michaelkotelnikov/argocdaas
 12. "app-workloads" -> "admin-apps" or "cluster-apps"
+13. should i switch from helm + kustomize to carvel?
 

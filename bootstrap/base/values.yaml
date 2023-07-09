@@ -29,7 +29,7 @@ clusters:
 repositories:
   ocp-mgmt: 
     name: ocp-management
-    url: https://azure-devops
+    url: https://github.com/Sh4peSh1fter/openshift_multi-cluster_management_the_gitops_way
     type: git
     username: admin
     password: admin
@@ -41,7 +41,7 @@ repositories:
     password: admin
 
 projects:
-  cluster-configs:
+  cluster_configs:
     description: an argo project that is dedicated for cluster-configs configurations.
-  admin-apps:
+  admin_apps:
     description: a
