@@ -1,10 +1,11 @@
+{{ $naespace := .Values.namespace }}
 {{- range $project_key, $project_value := .Values.projects }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: {{ $project_key }}-project
-  namespace: {{ .Values.namespace }}
+  namespace: {{ $namespace }}
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io

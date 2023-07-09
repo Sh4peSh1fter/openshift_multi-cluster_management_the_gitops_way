@@ -1,10 +1,11 @@
+{{ $naespace := .Values.namespace }}
 {{- range $repo_key, $repo_value := .Values.repositories }}
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: {{ $repo_key }}-repo
-  namespace: {{ .Values.namespace }}
+  namespace: {{ $namespace }}
   labels:
     argocd.argoproj.io/secret-type: repository
   annotations:
