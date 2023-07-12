@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-configs-application-set
+  namespace: {{ .Values.namespace }}
+spec:
+  generators:
+  - matrix:
+      generators:
+        - git:
+            repoURL: {{ index .Values "repositories" "ocp-mgmt" "url" }}
+            revision: HEAD
+            directories:
+            - path: cluster-configs/*
+        - clusters:
+            selector:
+              matchLabels:
+                argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: '{{`{{path.basename}}`}}-{{`{{name}}`}}'
+    spec:
+      project: cluster-configs-project
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 15
+          backoff:
+            duration: 15s
+            factor: 2
+            maxDuration: 5m
+      source:
+        repoURL: {{ index .Values "repositories" "ocp-mgmt" "url" }}
+        targetRevision: HEAD
+        path: '{{`{{path}}`}}'
+      destination:
+        server: '{{`{{server}}`}}'
+        namespace: '{{`{{path.basename}}`}}'

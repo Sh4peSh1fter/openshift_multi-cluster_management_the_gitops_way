@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
-  name: openshift-gitops-admin-apps
-  namespace: openshift-gitops
+  name: gitops-cluster-config
+  namespace: {{ .Values.namespace }}
 spec:
   applicationSet:
     resources:
@@ -123,3 +123,4 @@ spec:
       type: ""
   tls:
     ca: {}
+  kustomizeBuildOptions: "--enable-helm"
