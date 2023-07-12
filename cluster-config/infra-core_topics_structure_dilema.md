@@ -1,3 +1,3 @@
-# cluster-configs topics structure dilema
+# cluster-config topics structure dilema
 ## question
 what is the best way to split and structure the cluster configurations? 

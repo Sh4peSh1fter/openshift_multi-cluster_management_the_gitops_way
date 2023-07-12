@@ -1,5 +1,5 @@
 #### the application set division / partition dilema
-there are 3 ways to divide the application sets of the cluster-configs configuration:
+there are 3 ways to divide the application sets of the cluster-config configuration:
 ```
 lets assume that we have 2 environments: test, and prod.
 in each environment we have 3 configurations: node-conf, network-conf, and storage-conf.

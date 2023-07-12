@@ -16,10 +16,10 @@ ocp-management/
 │   └── argocd-projects
 │       ├── kustomization.yaml (points to current files)
 │       └── # argocd projects
-├── cluster-configs
+├── cluster-config
 │   ├── gitops-controller
 │   │   └── kustomization.yaml (points to bootstrap->overlays->acm)
-│   └── # other cluster-configs configuration manifests for the cluster, such as "resource reservation", "storage management", "proxy configuration", and so on
+│   └── # other cluster-config configuration manifests for the cluster, such as "resource reservation", "storage management", "proxy configuration", and so on
 └── admin-apps
     └── # application workloads that will run on the cluster
 ```

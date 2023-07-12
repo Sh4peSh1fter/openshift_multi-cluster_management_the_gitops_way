@@ -43,7 +43,7 @@ repositories:
     password: admin
 
 projects:
-  cluster-configs:
-    description: an argo project that is dedicated for cluster-configs configurations.
+  cluster-config:
+    description: an argo project that is dedicated for cluster-config configurations.
   admin-apps:
     description: a

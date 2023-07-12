@@ -1,26 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-configs-application-set
-  namespace: {{ .Values.namespace }}
+  name: cluster-config-appset
+  namespace: openshift-gitops
 spec:
   generators:
   - matrix:
       generators:
         - git:
-            repoURL: {{ index .Values "repositories" "ocp-mgmt" "url" }}
+            repoURL: https://github.com/Sh4peSh1fter/openshift_multi-cluster_management_the_gitops_way/tree/master
             revision: HEAD
             directories:
-            - path: cluster-configs/*
+            - path: cluster-config/*
         - clusters:
             selector:
               matchLabels:
                 argocd.argoproj.io/secret-type: cluster
   template:
     metadata:
-      name: '{{`{{path.basename}}`}}-{{`{{name}}`}}'
+      name: '{{path.basename}}-{{name}}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
     spec:
-      project: cluster-configs-project
+      project: '{{name}}-project'  # '{{metadata.labels.environment}}'
       syncPolicy:
         automated:
           prune: true
@@ -32,9 +34,9 @@ spec:
             factor: 2
             maxDuration: 5m
       source:
-        repoURL: {{ index .Values "repositories" "ocp-mgmt" "url" }}
+        repoURL: https://github.com/Sh4peSh1fter/openshift_multi-cluster_management_the_gitops_way/tree/master
         targetRevision: HEAD
-        path: '{{`{{path}}`}}'
+        path: '{{path}}'
       destination:
-        server: '{{`{{server}}`}}'
-        namespace: '{{`{{path.basename}}`}}'
+        server: '{{server}}'
+        namespace: '{{path.basename}}'  # ?

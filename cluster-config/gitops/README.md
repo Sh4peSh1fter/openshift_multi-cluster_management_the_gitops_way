@@ -7,7 +7,7 @@ well there are few ways to manage your clusters and applications - in the perspe
 1. main argo - one argo to manage them all.
 2. main argo per cluster (env) - argo for each cluster.
 3. main argo + sub argo per cluster (env) - sub argo for each cluster, and one main argo to manage all the sub argos.
-4. main argo per workload type - argo for cluster-configs, and argo for admin-apps.
+4. main argo per workload type - argo for cluster-config, and argo for admin-apps.
 5. main argo + sub argo per workload type - same with one main argo to manage them.
 
 after diving in to the acm, maybe there is no need for a main argo to manage the other argos, when you have the acm that does that for you.

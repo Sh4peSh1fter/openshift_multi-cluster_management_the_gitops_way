@@ -23,7 +23,7 @@ if you want to delete
 4. the ns is stuck on terminating.
 most likely this should resolve it:
     * oc patch -n openshift-gitops appproject.argoproj.io/admin-apps-project --type=merge -p '{"metadata": {"finalizers":null}}'
-    * oc patch -n ${NAMESPACE} appproject.argoproj.io/cluster-configs-project --type=merge -p '{"metadata": {"finalizers":null}}'
+    * oc patch -n ${NAMESPACE} appproject.argoproj.io/cluster-config-project --type=merge -p '{"metadata": {"finalizers":null}}'
 it may return. i tried oc delete ns/openshift-gitops and then kubectl delete -k bootstrap/overlays/hub-cluster/ and it didnt work.
     * oc delete csv openshift-gitops-operator.v1.5.10 -n openshift-operators
     * oc delete ns/openshift-gitops
@@ -39,3 +39,7 @@ it may return. i tried oc delete ns/openshift-gitops and then kubectl delete -k 
 7. https://github.com/mathieu-benoit/ci-with-helm/tree/main
 8. https://github.com/fluxcd/flux2-kustomize-helm-example
 
+
+
+
+InitialSSHKnownHosts

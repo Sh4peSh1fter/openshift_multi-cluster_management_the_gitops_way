@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-configs-application-set
+  name: cluster-config-application-set
   namespace: {{ .Values.namespace }}
 spec:
   generators:
@@ -11,7 +11,7 @@ spec:
             repoURL: {{ index .Values "repositories" "ocp-mgmt" "url" }}
             revision: HEAD
             directories:
-            - path: cluster-configs/*
+            - path: cluster-config/*
         - clusters:
             selector:
               matchLabels:
@@ -20,7 +20,7 @@ spec:
     metadata:
       name: '{{`{{path.basename}}`}}-{{`{{name}}`}}'
     spec:
-      project: cluster-configs-project
+      project: cluster-config-project
       syncPolicy:
         automated:
           prune: true

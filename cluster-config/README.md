@@ -1,4 +1,4 @@
-# cluster-configs
+# cluster-config
 ## cluster administration
 ### cluster management
 1. acm - subscription, namespace, operator group, multi cluster hub
